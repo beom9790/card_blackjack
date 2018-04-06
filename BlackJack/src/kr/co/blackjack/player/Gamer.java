@@ -1,19 +1,23 @@
 package kr.co.blackjack.player;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import kr.co.blackjack.card.CardDeck;
+import kr.co.blackjack.rule.Main;
+import kr.co.blackjack.rule.PrintMessage;
 
 public class Gamer {
-	public static ArrayList gamerCard = new ArrayList();	// gamer가 가지고 있는 카드_배열
-	static Scanner scan = new Scanner(System.in);
+	public static ArrayList<Object> gamerCard = new ArrayList<Object>();	// gamer가 가지고 있는 카드_배열
 	
-	public static void startGame() {
-		int inpNum;
-	
-		do {
-			System.out.println("카드를 더 뽑으시겠습니까?");
-			inpNum = scan.nextInt();
-		
-		} while(inpNum != 2);
+	public static void gamerGame() {
+		System.out.println(PrintMessage.PLAYER);
+		while(true) {
+			System.out.println(PrintMessage.ADDCARD);
+			Main.inpNum = Main.scan.nextInt();
+			if (Main.inpNum == 1) {
+				Gamer.gamerCard.add(CardDeck.extCard());
+			} else if (Main.inpNum == 2) {
+				break;
+			} else { System.out.println(PrintMessage.RIGHTANS); }
+		}
 	}
 }
